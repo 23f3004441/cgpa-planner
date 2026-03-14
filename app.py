@@ -249,6 +249,10 @@ def logout():
 # START APP
 # --------------------
 
+with app.app_context():
+    db.create_all()
+    seed_courses()
+
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
