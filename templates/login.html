@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sign In : Queen B</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --rose: #f48fb1;
+  --hot: #e91e8c;
+  --deep: #880e4f;
+  --gold: #c9a84c;
+  --gold-light: #f0d080;
+  --cream: #fff8f4;
+  --text: #3a1a2e;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  background: var(--cream);
+  overflow-x: hidden;
+}
+
+.left-panel {
+  width: 42%;
+  min-height: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+  background: linear-gradient(160deg, var(--deep) 0%, #c2185b 60%, var(--hot) 100%);
+}
+
+.left-panel .crown { font-size: 3.5rem; margin-bottom: 24px; }
+
+.left-panel h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  color: white;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.left-panel h2 em { font-style: italic; color: var(--gold-light); }
+
+.left-panel p {
+  font-family: 'Cormorant Garamond', serif;
+  color: rgba(255,255,255,0.75);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+.gold-line {
+  width: 40px; height: 1px;
+  background: var(--gold-light);
+  margin: 20px auto;
+  opacity: 0.7;
+}
+
+.card {
+  width: 58%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+  background: var(--cream);
+}
+
+.card-inner { width: 100%; max-width: 380px; }
+
+.card-inner .eyebrow {
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.card-inner h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--deep);
+  margin-bottom: 8px;
+}
+
+.card-inner .sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: #b06090;
+  margin-bottom: 36px;
+  font-weight: 300;
+}
+
+.field { margin-bottom: 24px; }
+
+label {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--deep);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1px solid #e8c8d8;
+  border-radius: 1px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  color: var(--text);
+  background: white;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+input:focus {
+  border-color: var(--hot);
+  box-shadow: 0 0 0 3px rgba(233,30,140,0.08);
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 15px;
+  background: var(--deep);
+  color: var(--gold-light);
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 1px;
+  transition: all 0.3s;
+  margin-top: 8px;
+  position: relative;
+  overflow: hidden;
+}
+.btn-submit::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--hot);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+  z-index: 0;
+}
+.btn-submit span { position: relative; z-index: 1; }
+.btn-submit:hover::after { transform: scaleX(1); }
+.btn-submit:hover { color: white; }
+
+.switch-link {
+  display: block;
+  text-align: center;
+  margin-top: 24px;
+  font-size: 0.8rem;
+  color: #b06090;
+  text-decoration: none;
+}
+.switch-link a { color: var(--hot); text-decoration: none; font-weight: 500; }
+.switch-link a:hover { text-decoration: underline; }
+
+.dots { display: flex; gap: 6px; margin-bottom: 32px; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--rose); opacity: 0.4; }
+.dot:first-child { background: var(--hot); opacity: 1; width: 18px; border-radius: 3px; }
+
+/* RESPONSIVE */
+@media (max-width: 640px) {
+  body { flex-direction: column; }
+
+  .left-panel {
+    width: 100%;
+    min-height: auto;
+    padding: 40px 24px 32px;
+  }
+  .left-panel .crown { font-size: 2.5rem; margin-bottom: 12px; }
+  .left-panel h2 { font-size: 1.8rem; }
+  .left-panel p { display: none; }
+
+  .card {
+    width: 100%;
+    min-height: auto;
+    padding: 32px 24px 48px;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<div class="left-panel">
+  <div class="crown">👑</div>
+  <h2>Welcome<br>back, <em>darling.</em></h2>
+  <div class="gold-line"></div>
+  <p>Your grades won't track<br>themselves. A queen always<br>knows where she stands.</p>
+</div>
+
+<div class="card">
+  <div class="card-inner">
+    <p class="eyebrow">IITM CGPA Planner</p>
+    <h3>Sign In</h3>
+    <p class="sub">Rule the leaderboard, not the library.</p>
+    <div class="dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <form method="POST">
+      <div class="field">
+        <label>Username</label>
+        <input type="text" name="username" required autocomplete="username">
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" name="password" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn-submit"><span>Enter ✦</span></button>
+    </form>
+    <p class="switch-link">New here? <a href="/register">Create your profile →</a></p>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Queen B : CGPA Planner</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --hot: #e91e8c;
+  --deep: #880e4f;
+  --gold: #c9a84c;
+  --gold-light: #f0d080;
+  --cream: #fff8f4;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--cream);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 10% 20%, rgba(233,30,140,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 80%, rgba(244,143,177,0.12) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-crowns {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.bg-crowns span {
+  position: absolute;
+  opacity: 0.06;
+  animation: floatUp linear infinite;
+  color: var(--gold);
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.06; }
+  90% { opacity: 0.06; }
+  100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.frame {
+  border: 1px solid var(--gold);
+  padding: 3px;
+  border-radius: 2px;
+  margin-bottom: 40px;
+  width: 100%;
+  max-width: 560px;
+}
+.frame-inner {
+  border: 1px solid var(--gold-light);
+  padding: 50px 40px;
+  text-align: center;
+  background: rgba(255,248,244,0.95);
+  position: relative;
+}
+
+.frame-inner::before,
+.frame-inner::after {
+  content: '✦';
+  position: absolute;
+  color: var(--gold);
+  font-size: 1.2rem;
+}
+.frame-inner::before { top: 12px; left: 16px; }
+.frame-inner::after { bottom: 12px; right: 16px; }
+
+.crown {
+  font-size: 2.8rem;
+  display: block;
+  margin-bottom: 14px;
+  animation: crownBounce 3s ease-in-out infinite;
+}
+@keyframes crownBounce {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-8px) rotate(3deg); }
+}
+
+.tagline-small {
+  font-weight: 300;
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  color: var(--deep);
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+h1 em { font-style: italic; color: var(--hot); }
+
+.subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: #9e4a7a;
+  margin: 14px 0 32px;
+  font-weight: 300;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 auto 32px;
+  width: 240px;
+}
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+}
+.divider::before { background: linear-gradient(to right, transparent, var(--gold)); }
+.divider::after { background: linear-gradient(to left, transparent, var(--gold)); }
+.divider span { color: var(--gold); font-size: 0.8rem; }
+
+.btn-group {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 13px 30px;
+  border-radius: 1px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: var(--deep);
+  color: var(--gold-light);
+  border: 1px solid var(--deep);
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--hot);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+  z-index: -1;
+}
+.btn-primary:hover { border-color: var(--hot); color: white; }
+.btn-primary:hover::after { transform: scaleX(1); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--deep);
+  border: 1px solid var(--gold);
+}
+.btn-secondary:hover { background: var(--gold); color: white; }
+
+.quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.88rem;
+  color: #b06090;
+  opacity: 0.8;
+  max-width: 400px;
+  text-align: center;
+  line-height: 1.6;
+}
+.quote::before { content: '"'; }
+.quote::after { content: '"'; }
+
+@media (max-width: 480px) {
+  .frame-inner { padding: 36px 24px; }
+  h1 { font-size: 2.2rem; }
+  .btn { padding: 12px 24px; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="bg-crowns" id="crowns"></div>
+
+<div class="container">
+  <div class="frame">
+    <div class="frame-inner">
+      <span class="crown">👑</span>
+      <p class="tagline-small">IITM BS Degree · Academic Excellence</p>
+      <h1>Queen <em>B's</em><br>CGPA Planner</h1>
+      <p class="subtitle">Because mediocrity is so last season.</p>
+      <div class="divider"><span>✦</span></div>
+      <div class="btn-group">
+        <a href="/login" class="btn btn-primary">Sign In</a>
+        <a href="/register" class="btn btn-secondary">Register</a>
+      </div>
+    </div>
+  </div>
+  <p class="quote">Destiny is for losers. It's just a stupid excuse to wait for things to happen instead of making them happen.</p>
+</div>
+
+<script>
+const container = document.getElementById('crowns');
+const symbols = ['♛','♕','✦','◆','✿','❋'];
+for(let i = 0; i < 20; i++){
+  const s = document.createElement('span');
+  s.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+  s.style.left = Math.random()*100 + 'vw';
+  s.style.animationDuration = (12 + Math.random()*20) + 's';
+  s.style.animationDelay = (Math.random()*15) + 's';
+  s.style.fontSize = (0.8 + Math.random()*1.5) + 'rem';
+  container.appendChild(s);
+}
+</script>
+
+</body>
+</html>

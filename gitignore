@@ -1,0 +1,21 @@
+# secrets - never commit this
+.env
+
+# python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# virtual environment
+venv/
+env/
+.venv/
+
+# database (local only)
+*.db
+instance/
+
+# os files
+.DS_Store
+Thumbs.db
